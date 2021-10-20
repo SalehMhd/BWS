@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BWS.Clients.ClientDetailPage"
+             xmlns:local="clr-namespace:BWS.Clients">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="dayType2Template">
+                <ViewCell>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="4.5*" />
+                            <ColumnDefinition Width="4.5*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="{Binding Name}" TextColor="Green" FontAttributes="Bold" />
+                        <StackLayout Grid.Column="1" Orientation="Vertical">
+                            <Label Text="{Binding Exercise1.Name}" TextColor="Black" />
+                            <Label Text="{Binding Exercise1.Reps}" TextColor="Black" />
+                        </StackLayout>
+                        <StackLayout Grid.Column="2" Orientation="Vertical">
+                            <Label Text="{Binding Exercise2.Name}" TextColor="Black" />
+                            <Label Text="{Binding Exercise2.Reps}" TextColor="Black" />
+                        </StackLayout>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="dayType3Template">
+                <ViewCell>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="3*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="{Binding Name}" TextColor="Red" FontAttributes="Bold" />
+                        <StackLayout Grid.Column="1" Orientation="Vertical">
+                            <Label Text="{Binding Exercise1.Name}" TextColor="Black" />
+                            <Label Text="{Binding Exercise1.Reps}" TextColor="Black" />
+                        </StackLayout>
+                        <StackLayout Grid.Column="2" Orientation="Vertical">
+                            <Label Text="{Binding Exercise2.Name}" TextColor="Black" />
+                            <Label Text="{Binding Exercise2.Reps}" TextColor="Black" />
+                        </StackLayout>
+                        <StackLayout Grid.Column="3" Orientation="Vertical">
+                            <Label Text="{Binding Exercise3.Name}" TextColor="Black" />
+                            <Label Text="{Binding Exercise3.Reps}" TextColor="Black" />
+                        </StackLayout>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+            <local:ExerciseTypeSelector x:Key="dayTypeDataTemplateSelector" DayType2Template="{StaticResource dayType2Template}" DayType3Template="{StaticResource dayType3Template}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Spacing="20" Padding="15">
+            <Label Text="{Binding Name,  StringFormat='Name:  {0}'}" HorizontalTextAlignment="Center" />
+            <Label Text="{Binding Email, StringFormat='Email: {0}'}" HorizontalTextAlignment="Center"/>
+            <Label Text="{Binding Phone, StringFormat='Phone: {0}'}" HorizontalTextAlignment="Center"/>
+
+            <ListView x:Name="listView" Margin="0,20,0,0" ItemTemplate="{StaticResource dayTypeDataTemplateSelector}" ItemsSource="{Binding Weeks}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

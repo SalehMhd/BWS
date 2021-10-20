@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
+        xmlns:inv="clr-namespace:BWS.Invoices"
+        xmlns:clients="clr-namespace:BWS.Clients"           
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+       mc:Ignorable="d"
+       Title="BWS"
+       x:Class="BWS.AppShell">
+
+    <Shell.FlyoutHeaderTemplate>
+        <DataTemplate>
+            <Grid BackgroundColor="{StaticResource Primary}" Padding="20">
+                <Label Text="Invoice App"
+                      TextColor="White"
+                      HorizontalTextAlignment="Center"
+                      VerticalTextAlignment="Center" />
+            </Grid>
+        </DataTemplate>
+    </Shell.FlyoutHeaderTemplate>
+
+    <FlyoutItem Title="Invoices" Icon="invoice.png">
+        <ShellContent Title="Business" ContentTemplate="{DataTemplate inv:InvoicePage}" />
+        <ShellContent Title="Personal" ContentTemplate="{DataTemplate inv:PersonalInvoicePage}"/>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Clients" Icon="people.png">
+        <ShellContent ContentTemplate="{DataTemplate clients:ClientPage}"/>
+    </FlyoutItem>
+
+    <MenuItem Text="Settings" IconImageSource="settings.png" Command="{Binding SettingsCommand}" />
+    <MenuItem Text="Help" IconImageSource="help.png" Command="{Binding HelpCommand}" />
+
+</Shell>
