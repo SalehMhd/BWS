@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="BWS.Clients.NewBWSDayPage"
+             Shell.PresentationMode="ModalAnimated"
+             Shell.NavBarIsVisible="True">
+    
+    <!--<ContentPage.ToolbarItems>
+        <ToolbarItem Name="SaveDayItem" Order="Primary" Icon="Microsoft.png" Text="Save" Priority="0" Command="{Binding SaveDayToolbarItemCommand}" />
+    </ContentPage.ToolbarItems>-->
+
+    <ContentPage.Content>
+        
+        <StackLayout>
+            <Button Text="Save" 
+                    Command="{Binding SaveDayCommand}"
+                    HorizontalOptions="End"
+                    VerticalOptions="Fill" />
+            
+            <Entry Placeholder="Enter day name"
+                   Text="{Binding Name}"
+                   VerticalTextAlignment="Start"
+                   VerticalOptions="Fill"
+                   HorizontalOptions="Fill" />
+
+            <Grid IsVisible="{Binding Exercise1Visible}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="3" />
+                </Grid.RowDefinitions>
+                <Entry Grid.Row="0"
+                       Placeholder="Enter Exercise"
+                       Text="{Binding Exercise1.Name}"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Start" />
+                <Entry Grid.Row="1"
+                       Placeholder="Enter Reps"
+                       Text="{Binding Exercise1.Reps}"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Start" />
+                <Entry Grid.Row="2"
+                       Placeholder="Enter a comment for the athlete"
+                       Text="{Binding Exercise1.CoachComment}"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Start" />
+                <BoxView Grid.Row="4"
+                        BackgroundColor="Gray"
+                        HeightRequest="2"
+                        HorizontalOptions="Fill" />
+            </Grid>
+
+            <Grid IsVisible="{Binding Exercise2Visible}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="3" />
+                </Grid.RowDefinitions>
+                <Entry Grid.Row="0"
+                       Placeholder="Enter Exercise"
+                       Text="{Binding Exercise2.Name}"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Start" />
+                <Entry Grid.Row="1"
+                       Placeholder="Enter Reps"
+                       Text="{Binding Exercise2.Reps}"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Start" />
+                <Entry Grid.Row="2"
+                       Placeholder="Enter a comment for the athlete"
+                       Text="{Binding Exercise2.CoachComment}"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Start" />
+                <BoxView Grid.Row="4"
+                        BackgroundColor="Gray"
+                        HeightRequest="2"
+                        HorizontalOptions="Fill" />
+            </Grid>
+
+            <Grid IsVisible="{Binding Exercise3Visible}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="3" />
+                </Grid.RowDefinitions>
+                <Entry Grid.Row="0"
+                       Placeholder="Enter Exercise"
+                       Text="{Binding Exercise3.Name}"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Start" />
+                <Entry Grid.Row="1"
+                       Placeholder="Enter Reps"
+                       Text="{Binding Exercise3.Reps}"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Start" />
+                <Entry Grid.Row="2"
+                       Placeholder="Enter a comment for the athlete"
+                       Text="{Binding Exercise3.CoachComment}"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Start" />
+                <BoxView Grid.Row="4"
+                        BackgroundColor="Gray"
+                        HeightRequest="2"
+                        HorizontalOptions="Fill" />
+            </Grid>
+
+            <Button Text="Add Exercise" Command="{Binding NewExerciseCommand}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

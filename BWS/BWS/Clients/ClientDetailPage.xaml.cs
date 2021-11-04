@@ -14,5 +14,10 @@ namespace BWS.Clients
             BindingContext = new ClientDetailViewModel();
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            (BindingContext as ClientDetailViewModel).OnAppearingExecuted();
+        }
     }
 }

@@ -6,6 +6,8 @@ namespace BWS.Clients
 {
     public class FakeClientStore
     {
+        public static List<BWSDay> InMemoryDays => new List<BWSDay>();
+
         public static List<Client> Clients => new List<Client>()
             {
                 new Client

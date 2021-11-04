@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:controls="clr-namespace:BWS.Clients"
+             x:Class="BWS.Clients.BWSDayPage">
+    <ContentPage.Resources>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Margin="30" Orientation="Vertical">
+            <Label      Text="{Binding Name}"
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        VerticalTextAlignment="Center"
+                        HorizontalTextAlignment="Start" />
+
+            <BoxView    BackgroundColor="OrangeRed"
+                        HeightRequest="1"
+                        HorizontalOptions="Fill" />
+
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="75" />
+                    <RowDefinition Height="3" />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0"
+                        Text="{Binding Exercise1.Name}"
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        VerticalTextAlignment="Center"
+                        HorizontalTextAlignment="Start" />
+                <Label Grid.Row="1"
+                        Text="{Binding Exercise1.Reps}"
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        VerticalTextAlignment="Center"
+                        HorizontalTextAlignment="Start" />
+                <Label Grid.Row="2"
+                        Text="{Binding Exercise1.CoachComment, StringFormat='Coach says: {0}'}"
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        VerticalTextAlignment="Center"
+                        HorizontalTextAlignment="Start" />
+                <Entry Grid.Row="3"
+                        Placeholder="Enter how it felt"
+                        Text="{Binding Exercise1.Comment}"
+                        VerticalTextAlignment="Start"
+                        VerticalOptions="Fill"
+                        HorizontalOptions="Fill" />
+                <BoxView Grid.Row="4"
+                        BackgroundColor="Gray"
+                        HeightRequest="2"
+                        HorizontalOptions="Fill" />
+            </Grid>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="75" />
+                    <RowDefinition Height="3" />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0"
+                        Text="{Binding Exercise2.Name}"
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        VerticalTextAlignment="Center"
+                        HorizontalTextAlignment="Start" />
+                <Label Grid.Row="1"
+                        Text="{Binding Exercise2.Reps}"
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        VerticalTextAlignment="Center"
+                        HorizontalTextAlignment="Start" />
+                <Label Grid.Row="2"
+                        Text="{Binding Exercise2.CoachComment, StringFormat='Coach says: {0}'}"
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        VerticalTextAlignment="Center"
+                        HorizontalTextAlignment="Start" />
+                <Entry Grid.Row="3"
+                        Placeholder="Enter how it felt"
+                        Text="{Binding Exercise2.Comment}"
+                        VerticalTextAlignment="Start"
+                        VerticalOptions="Fill"
+                        HorizontalOptions="Fill" />
+                <BoxView Grid.Row="4"
+                        BackgroundColor="Gray"
+                        HeightRequest="2"
+                        HorizontalOptions="Fill" />
+            </Grid>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="75" />
+                    <RowDefinition Height="3" />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0"
+                        Text="{Binding Exercise3.Name}"
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        VerticalTextAlignment="Center"
+                        HorizontalTextAlignment="Start" />
+                <Label Grid.Row="1"
+                        Text="{Binding Exercise3.Reps}"
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        VerticalTextAlignment="Center"
+                        HorizontalTextAlignment="Start" />
+                <Label Grid.Row="2"
+                        Text="{Binding Exercise3.CoachComment, StringFormat='Coach says: {0}'}"
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        VerticalTextAlignment="Center"
+                        HorizontalTextAlignment="Start" />
+                <Entry Grid.Row="3"
+                        Placeholder="Enter how it felt"
+                        Text="{Binding Exercise3.Comment}"
+                        VerticalTextAlignment="Start"
+                        VerticalOptions="Fill"
+                        HorizontalOptions="Fill" />
+            </Grid>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

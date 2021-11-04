@@ -17,10 +17,35 @@ namespace BWS.Clients
         private string email;
         private string clientName;
         public ObservableCollection<BWSDay> Weeks { get; }
+        public Command<BWSDay> BWSDayTappedCommand { get; }
+        public Command NewsBWSdayCommand { get; }
 
         public ClientDetailViewModel()
         {
             Weeks = new ObservableCollection<BWSDay>();
+            BWSDayTappedCommand = new Command<BWSDay>(OnBWSDaySelected);
+            NewsBWSdayCommand = new Command(OnNewBWSDayClicked);
+        }
+
+        private async void OnBWSDaySelected(BWSDay day)
+        {
+            if (day == null)
+                return;
+
+            await Shell.Current
+                .GoToAsync($"{nameof(BWSDayPage)}?{nameof(BWSDayViewModel.Name)}={day.Name}");
+
+        }
+
+        private async void OnNewBWSDayClicked()
+        {
+            await Shell.Current
+                .GoToAsync($"{nameof(NewBWSDayPage)}?{nameof(BWSDayViewModel.Name)}='new'", true);
+        }
+
+        public void OnAppearingExecuted()
+        {
+            var koko = "asdsad";
         }
 
         internal void OnAppearing()
