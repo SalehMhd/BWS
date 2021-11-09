@@ -30,7 +30,7 @@ namespace BWS.Clients
             {
                 Clients.Clear();
 
-                var clients = await Task.FromResult(FakeClientStore.Clients);
+                var clients = await Task.FromResult(FakeClientStore.DB.Clients);
                 foreach (var item in clients)
                 {
                     Clients.Add(item);

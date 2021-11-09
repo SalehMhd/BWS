@@ -6,21 +6,39 @@ namespace BWS.Clients
 {
     public class FakeClientStore
     {
-        public static List<BWSDay> InMemoryDays => new List<BWSDay>();
+        private FakeClientStore()
+        {
+        }
+        private static FakeClientStore _store;
 
-        public static List<Client> Clients => new List<Client>()
+        public static FakeClientStore DB
+        {
+            get
+            {
+                if (_store == null)
+                {
+                    _store = new FakeClientStore();
+                    _store.InitStore();
+                }
+                return _store;
+            }
+        }
+
+        private void InitStore()
+        {
+            Clients = new List<Client>()
             {
                 new Client
                 {
                     Id = Guid.NewGuid().ToString(),
-                    Name = "Saleh Mohammad",                   
+                    Name = "Saleh Mohammad",
                     Email = "salehMohammad@email.com",
                     BWSWeeks = new List<BWSDay>()
                     {
                         new BWSDay2
                         {
                             Name = "Mon",
-                            
+
                             Exercise1 = new Exercise { Name="SN", Reps="30 40 50 60x2x3", CoachComment="Pas Chance :D"},
                             Exercise2 = new Exercise { Name="CJ", Reps="30 50 70 100x2x3", CoachComment="Jambs"},
                         },
@@ -43,13 +61,13 @@ namespace BWS.Clients
                 new Client
                 {
                     Id = Guid.NewGuid().ToString(),
-                    Name = "LastName Dirk",                  
+                    Name = "LastName Dirk",
                     Email = "LastNameDirk@email.com",
                 },
                 new Client
                 {
                     Id = Guid.NewGuid().ToString(),
-                    Name = "Maddy Bassett",                    
+                    Name = "Maddy Bassett",
                     Email = "maddyb@email.com",
                 },
                 new Client
@@ -71,5 +89,10 @@ namespace BWS.Clients
                     Email = "vela@email.com",
                 }
             };
+        }
+
+        public List<BWSDay> InMemoryDays => new List<BWSDay>();
+
+        public List<Client> Clients { get; set; }
     }
 }

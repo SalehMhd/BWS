@@ -11,10 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Clients\BWSDayPage.xaml">
+    <EmbeddedResource Update="Clients\Pages\BWSDayPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Clients\NewBWSDayPage.xaml">
+    <EmbeddedResource Update="Clients\Pages\NewBWSDayPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

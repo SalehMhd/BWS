@@ -59,8 +59,34 @@ namespace BWS.Clients
             var exe1 = Exercise1;
             var exe2 = Exercise2;
             var exe3 = Exercise3;
+            // the new day is added to object c but not to the faleClientStore
+            var c = FakeClientStore.DB.Clients.FirstOrDefault(s => s.Name.Contains("Saleh"));
+            c.BWSWeeks.Add(new BWSDay2
+            {
+                Name = tempName,
+                Exercise1 = new Exercise { Name = exe1.Name, Reps = exe1.Reps, CoachComment = exe1.CoachComment } ,
+                Exercise2 = new Exercise { Name = exe2.Name, Reps = exe2.Reps, CoachComment = exe2.CoachComment },
+            });
 
-            await Shell.Current.GoToAsync("..", true);
+            await Shell.Current.GoToAsync($"..?{nameof(ClientDetailViewModel.ClientName)}=Saleh Mohammad", true);
+        }
+
+        public async void LoadBWSDay(string name)
+        {
+            try
+            {
+                var day = await Task.FromResult(FakeClientStore.DB.Clients.FirstOrDefault(s => s.Name.Contains("Saleh")).BWSWeeks.FirstOrDefault(c => c.Name == name));
+                if (name != "new")
+                {
+                    SetViewModelProperties(day);
+                }
+
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                Debug.WriteLine("Failed to Load BWSDay");
+            }
         }
 
         /// <summary>
@@ -267,24 +293,6 @@ namespace BWS.Clients
         //    set => SetProperty(ref exercise3Comment, value);
         //}
         #endregion
-
-        public async void LoadBWSDay(string name)
-        {
-            try
-            {
-                var day = await Task.FromResult(FakeClientStore.Clients.FirstOrDefault(s => s.Name.Contains("Saleh")).BWSWeeks.FirstOrDefault(c => c.Name == name));
-                if(name != "new")
-                {
-                    //SetViewModelProperties(day);
-                }
-
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                Debug.WriteLine("Failed to Load BWSDay");
-            }
-        }
 
     }
 }

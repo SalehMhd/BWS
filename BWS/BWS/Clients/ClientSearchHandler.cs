@@ -13,7 +13,7 @@ namespace BWS.Clients
 
             ItemsSource = string.IsNullOrWhiteSpace(newValue)
                 ? null
-                : FakeClientStore.Clients.Where(
+                : FakeClientStore.DB.Clients.Where(
                     c => c.Name.ToLower().Contains(newValue.ToLower()));
         }
 

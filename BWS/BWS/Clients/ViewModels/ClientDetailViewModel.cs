@@ -43,9 +43,27 @@ namespace BWS.Clients
                 .GoToAsync($"{nameof(NewBWSDayPage)}?{nameof(BWSDayViewModel.Name)}='new'", true);
         }
 
-        public void OnAppearingExecuted()
+        public async void OnAppearingExecuted()
         {
-            var koko = "asdsad";
+            try
+            {
+                Weeks.Clear();
+
+                var client = await Task.FromResult(FakeClientStore.DB.Clients.FirstOrDefault(c => c.Name == name));
+                var weeks = await Task.FromResult(client.BWSWeeks);
+                foreach (var item in weeks)
+                {
+                    Weeks.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
 
         internal void OnAppearing()
@@ -57,7 +75,7 @@ namespace BWS.Clients
         {
             try
             {
-                var client = await Task.FromResult(FakeClientStore.Clients.FirstOrDefault(c => c.Name == name));
+                var client = await Task.FromResult(FakeClientStore.DB.Clients.FirstOrDefault(c => c.Name == name));
 
                 Name = client.Name;
                 Phone = client.PhoneNumber;
