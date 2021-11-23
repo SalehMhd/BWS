@@ -16,15 +16,18 @@ namespace BWS.Clients
         private string phone;
         private string email;
         private string clientName;
+
+        private bool showDate;
+
         public ObservableCollection<BWSDay> Weeks { get; }
         public Command<BWSDay> BWSDayTappedCommand { get; }
         public Command NewsBWSdayCommand { get; }
-
         public ClientDetailViewModel()
         {
             Weeks = new ObservableCollection<BWSDay>();
             BWSDayTappedCommand = new Command<BWSDay>(OnBWSDaySelected);
             NewsBWSdayCommand = new Command(OnNewBWSDayClicked);
+            ShowDate = false;
         }
 
         private async void OnBWSDaySelected(BWSDay day)
@@ -37,10 +40,12 @@ namespace BWS.Clients
 
         }
 
-        private async void OnNewBWSDayClicked()
+        //private async void OnNewBWSDayClicked()
+        private void OnNewBWSDayClicked()
         {
-            await Shell.Current
-                .GoToAsync($"{nameof(NewBWSDayPage)}?{nameof(BWSDayViewModel.Name)}='new'", true);
+            ShowDate = true;
+            //await Shell.Current
+            //    .GoToAsync($"{nameof(NewBWSDayPage)}?{nameof(BWSDayViewModel.Name)}='new'", true);
         }
 
         public async void OnAppearingExecuted()
@@ -134,6 +139,12 @@ namespace BWS.Clients
                 clientName = value;
                 LoadClient(HttpUtility.UrlDecode(clientName));
             }
+        }
+
+        public bool ShowDate
+        {
+            get => showDate;
+            set => SetProperty(ref showDate, value);
         }
     }
 }

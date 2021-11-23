@@ -68,7 +68,16 @@
             <Label Text="{Binding Phone, StringFormat='Phone: {0}'}" HorizontalTextAlignment="Center"/>
 
             <ListView x:Name="listView" Margin="0,20,0,0" ItemTemplate="{StaticResource dayTypeDataTemplateSelector}" ItemsSource="{Binding Weeks}" />
-            <Button Text="Add Day" Command="{Binding NewsBWSdayCommand}" />
+
+            <!--<Button Text="Add Day" Command="{Binding NewsBWSdayCommand}" />-->
+            <!--<Button Text="Add Day" Clicked="Button_Clicked" />
+
+            <DatePicker x:Name="datePicker"
+                        IsVisible="false"
+                        Format="D"
+                        Margin="30, 0, 0, 30"
+                        DateSelected="OnDateSelected" />-->
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

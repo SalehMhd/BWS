@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:local="clr-namespace:BWS.Clients"
+             x:Class="BWS.Clients.EditClientDetailPage">
+    <ContentPage.Content>
+        <StackLayout Spacing="20" Padding="15">
+            <Label Text="{Binding Name,  StringFormat='Name:  {0}'}" HorizontalTextAlignment="Center" />
+            <Label Text="{Binding Email, StringFormat='Email: {0}'}" HorizontalTextAlignment="Center"/>
+            <Label Text="{Binding Phone, StringFormat='Phone: {0}'}" HorizontalTextAlignment="Center"/>
+
+            <ListView x:Name="listView" Margin="0,20,0,0" ItemsSource="{Binding Weeks}" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Clicked="OnDelete"
+                                  CommandParameter="{Binding .}"
+                                  Text="Delete" IsDestructive="True" />
+                            </ViewCell.ContextActions>
+                            
+                            <StackLayout Orientation="Horizontal">
+                                <Label  Text="{Binding Name}" TextColor="Red" FontAttributes="Bold" />
+                                <StackLayout Orientation="Vertical" IsVisible="{Binding Exercise1Visible}">
+                                    <Button BackgroundColor="LightGreen" Text="Fill Exercise" IsVisible="{Binding Exercise1.ShowButton}" Command="{Binding Source={RelativeSource AncestorType={x:Type local:EditClientDetailViewModel}}, Path=FillExerciseCommand}" CommandParameter="{Binding .}" />
+                                    <Label Text="{Binding Exercise1.Name}" TextColor="Black" IsVisible="{Binding Exercise1.ShowInfo}"/>
+                                    <Label Text="{Binding Exercise1.Reps}" TextColor="Black" IsVisible="{Binding Exercise1.ShowInfo}"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Vertical" IsVisible="{Binding Exercise2Visible}">
+                                    <Button BackgroundColor="LightGreen" Text="Fill Exercise" IsVisible="{Binding Exercise2.ShowButton}" Command="{Binding Source={RelativeSource AncestorType={x:Type local:EditClientDetailViewModel}}, Path=FillExerciseCommand}" CommandParameter="{Binding .}" />
+                                    <Label Text="{Binding Exercise2.Name}" TextColor="Black" IsVisible="{Binding Exercise2.ShowInfo}"/>
+                                    <Label Text="{Binding Exercise2.Reps}" TextColor="Black" IsVisible="{Binding Exercise2.ShowInfo}"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Vertical" IsVisible="{Binding Exercise3Visible}">
+                                    <Button BackgroundColor="LightGreen" Text="Fill Exercise" IsVisible="{Binding Exercise3.ShowButton}" Command="{Binding Source={RelativeSource AncestorType={x:Type local:EditClientDetailViewModel}}, Path=FillExerciseCommand}" CommandParameter="{Binding .}" />
+                                    <Label Text="{Binding Exercise3.Name}" TextColor="Black" IsVisible="{Binding Exercise3.ShowInfo}"/>
+                                    <Label Text="{Binding Exercise3.Reps}" TextColor="Black" IsVisible="{Binding Exercise3.ShowInfo}"/>
+                                </StackLayout>
+                                <Button BackgroundColor="Green" Text="Add Empty Exercise" Command="{Binding Source={RelativeSource AncestorType={x:Type local:EditClientDetailViewModel}}, Path=AddEmptyExerciseCommand}" CommandParameter="{Binding .}" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+
+            <!--<Button Text="Add Day" Command="{Binding NewsBWSdayCommand}" />-->
+            <Button Text="Add Day" Clicked="AddDayButton_Clicked" />
+
+            <DatePicker x:Name="datePicker"
+                        IsVisible="false"
+                        Format="D"
+                        Margin="30, 0, 0, 30"
+                        DateSelected="OnDateSelected" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

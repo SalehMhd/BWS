@@ -17,9 +17,17 @@ namespace BWS.Clients
     {
         public string Name { get; set; }
         public virtual int Type { get; }
+    }
+    public class BWSDayNew : BWSDay
+    {
+        public override int Type { get { return 0; } }
+    }
+    public class BWSDay1 : BWSDay
+    {
+        public override int Type { get { return 1; } }
         public Exercise Exercise1 { get; set; }
     }
-    public class BWSDay2 : BWSDay
+    public class BWSDay2 : BWSDay1
     {
         public override int Type { get { return 2; } }
         public Exercise Exercise2 { get; set; }

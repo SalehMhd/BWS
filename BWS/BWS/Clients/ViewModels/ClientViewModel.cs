@@ -22,6 +22,12 @@ namespace BWS.Clients
             });
         }
 
+        private bool _edit;
+        public bool IsEdit {
+            get => _edit;
+            set => SetProperty(ref _edit, value);
+        }
+
         private async Task ExecuteLoadClientsCommand()
         {
             IsBusy = true;
@@ -56,8 +62,14 @@ namespace BWS.Clients
             if (client == null)
                 return;
 
+            if(!IsEdit)
+            { 
+                await Shell.Current
+                    .GoToAsync($"{nameof(ClientDetailPage)}?{nameof(ClientDetailViewModel.ClientName)}={client.Name}");
+            }
             await Shell.Current
-                .GoToAsync($"{nameof(ClientDetailPage)}?{nameof(ClientDetailViewModel.ClientName)}={client.Name}");
+                .GoToAsync($"{nameof(EditClientDetailPage)}?{nameof(EditClientDetailViewModel.ClientName)}={client.Name}");
+
 
         }
 

@@ -29,6 +29,13 @@
                 </CollectionView>
             </RefreshView>
 
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="End"
+                         VerticalOptions="End">
+                <Label Text="Edit Client"/>
+                <CheckBox IsChecked="{Binding IsEdit}" />
+            </StackLayout>
+             
             <Button Text="New"
                 Command="{Binding AddClientCommand}"
                 WidthRequest="80"

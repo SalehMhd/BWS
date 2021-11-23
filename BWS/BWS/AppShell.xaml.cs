@@ -21,6 +21,7 @@ namespace BWS
             Routing.RegisterRoute(nameof(ClientDetailPage), typeof(ClientDetailPage));
             Routing.RegisterRoute(nameof(BWSDayPage), typeof(BWSDayPage));
             Routing.RegisterRoute(nameof(NewBWSDayPage), typeof(NewBWSDayPage));
+            Routing.RegisterRoute(nameof(EditClientDetailPage), typeof(EditClientDetailPage));
         }
 
         public ICommand SettingsCommand => new Command(async () =>

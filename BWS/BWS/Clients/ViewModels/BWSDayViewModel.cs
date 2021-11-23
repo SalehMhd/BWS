@@ -10,36 +10,6 @@ using Xamarin.Forms;
 
 namespace BWS.Clients
 {
-    public class ExerciseViewModel :  BaseViewModel
-    {
-        private string name;
-        private string reps;
-        private string coachComment;
-        private string comment;
-
-        public string Name
-        {
-            get => name;
-            set => SetProperty(ref name, value);
-        }
-        public string Reps
-        {
-            get => reps;
-            set => SetProperty(ref reps, value);
-        }
-        public string CoachComment
-        {
-            get => coachComment;
-            set => SetProperty(ref coachComment, value);
-        }
-        public string Comment
-        {
-            get => comment;
-            set => SetProperty(ref comment, value);
-        }
-
-    }
-
     [QueryProperty(nameof(Name), nameof(Name))]
     public class BWSDayViewModel : BaseViewModel
     {
@@ -87,6 +57,32 @@ namespace BWS.Clients
                 Debug.WriteLine(e.Message);
                 Debug.WriteLine("Failed to Load BWSDay");
             }
+        }
+
+        internal static BWSDayViewModel CreateBWSDayViewModel(BWSDay item)
+        {
+            var day = new BWSDayViewModel();
+
+            day.Name = item.Name;
+            day.Type = item.Type;
+
+            if(item.Type > 0)
+            { 
+                BWSDay1 dayType1 = (BWSDay1)item;
+                day.Exercise1 = new ExerciseViewModel { Name = dayType1.Exercise1.Name, Reps = dayType1.Exercise1.Reps, CoachComment = dayType1.Exercise1.CoachComment };
+            }
+            if (item.Type > 1)
+            {
+                BWSDay2 dayType2 = (BWSDay2)item;
+                day.Exercise2 = new ExerciseViewModel { Name = dayType2.Exercise2.Name, Reps = dayType2.Exercise2.Reps, CoachComment = dayType2.Exercise2.CoachComment };
+            }
+            if (item.Type > 2)
+            {
+                BWSDay3 dayType3 = (BWSDay3)item;
+                day.Exercise3 = new ExerciseViewModel { Name = dayType3.Exercise3.Name, Reps = dayType3.Exercise3.Reps, CoachComment = dayType3.Exercise3.CoachComment };
+            }
+
+            return day;
         }
 
         /// <summary>
