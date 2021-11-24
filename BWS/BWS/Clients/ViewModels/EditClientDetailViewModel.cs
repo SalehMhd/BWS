@@ -73,6 +73,7 @@ namespace BWS.Clients
         public Command AddExerciseShowPopupCommand { get; }
         public Command AddExerciseClosePopupCommand { get; }
         public Command CancelExerciseClosePopupCommand { get; }
+        public Command EditExerciseShowPopupCommand { get; }
         public ObservableCollection<BWSDayViewModel> Weeks { get; }
         public EditClientDetailViewModel()
         {
@@ -83,8 +84,21 @@ namespace BWS.Clients
 
             AddExerciseClosePopupCommand = new Command(OnAddExerciseClosePopupCommand);
             CancelExerciseClosePopupCommand = new Command(OnCancelExerciseClosePopupCommand);
+            EditExerciseShowPopupCommand = new Command<ExerciseViewModel>(OnEditExerciseShowPopupCommand);
 
             ShowDate = false;
+        }
+        private async void OnEditExerciseShowPopupCommand(ExerciseViewModel exerciseVM)
+        {
+            selectedDayName = exerciseVM.DayName;
+            editedExercise.Name = exerciseVM.Name;
+            editedExercise.Reps = exerciseVM.Reps;
+            editedExercise.CoachComment = exerciseVM.CoachComment;
+
+            var popupUpPage = new ExercisePage();
+            popupUpPage.BindingContext = this;
+            await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PushAsync(popupUpPage);
+
         }
         private void OnFillExerciseSelected(BWSDayViewModel day)
         {
@@ -124,6 +138,7 @@ namespace BWS.Clients
                 selectedDay.Exercise1.Name = editedExercise.Name;
                 selectedDay.Exercise1.Reps = editedExercise.Reps;
                 selectedDay.Exercise1.CoachComment = editedExercise.CoachComment;
+                selectedDay.Exercise1.DayName = selectedDay.Name;
                 selectedDay.Exercise1.ShowButton = false;
                 selectedDay.Exercise1.ShowInfo = true;
                 selectedDay.Exercise1Visible = true;
@@ -134,6 +149,7 @@ namespace BWS.Clients
                 selectedDay.Exercise2.Name = editedExercise.Name;
                 selectedDay.Exercise2.Reps = editedExercise.Reps;
                 selectedDay.Exercise2.CoachComment = editedExercise.CoachComment;
+                selectedDay.Exercise2.DayName = selectedDay.Name;
                 selectedDay.Exercise2.ShowButton = false;
                 selectedDay.Exercise2.ShowInfo = true;
                 selectedDay.Exercise2Visible = true;
@@ -144,6 +160,7 @@ namespace BWS.Clients
                 selectedDay.Exercise3.Name = editedExercise.Name;
                 selectedDay.Exercise3.Reps = editedExercise.Reps;
                 selectedDay.Exercise3.CoachComment = editedExercise.CoachComment;
+                selectedDay.Exercise3.DayName = selectedDay.Name;
                 selectedDay.Exercise3.ShowButton = false;
                 selectedDay.Exercise3.ShowInfo = true;
                 selectedDay.Exercise3Visible = true;

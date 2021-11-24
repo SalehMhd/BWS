@@ -30,19 +30,31 @@
                             <StackLayout Orientation="Horizontal">
                                 <Label  Text="{Binding Name}" TextColor="Red" FontAttributes="Bold" />
                                 <StackLayout Orientation="Vertical" IsVisible="{Binding Exercise1Visible}">
-                                    <Button BackgroundColor="LightGreen" Text="Fill Exercise" IsVisible="{Binding Exercise1.ShowButton}" Command="{Binding Source={RelativeSource AncestorType={x:Type local:EditClientDetailViewModel}}, Path=FillExerciseCommand}" CommandParameter="{Binding .}" />
+                                    <!--<Button BackgroundColor="LightGreen" Text="Fill Exercise" IsVisible="{Binding Exercise1.ShowButton}" Command="{Binding Source={RelativeSource AncestorType={x:Type local:EditClientDetailViewModel}}, Path=FillExerciseCommand}" CommandParameter="{Binding .}" />-->
                                     <Label Text="{Binding Exercise1.Name}" TextColor="Black" IsVisible="{Binding Exercise1.ShowInfo}"/>
                                     <Label Text="{Binding Exercise1.Reps}" TextColor="Black" IsVisible="{Binding Exercise1.ShowInfo}"/>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Source={RelativeSource AncestorType={x:Type local:EditClientDetailViewModel}}, Path=EditExerciseShowPopupCommand}" CommandParameter="{Binding Exercise1}">
+                                        </TapGestureRecognizer>
+                                    </StackLayout.GestureRecognizers>
                                 </StackLayout>
                                 <StackLayout Orientation="Vertical" IsVisible="{Binding Exercise2Visible}">
-                                    <Button BackgroundColor="LightGreen" Text="Fill Exercise" IsVisible="{Binding Exercise2.ShowButton}" Command="{Binding Source={RelativeSource AncestorType={x:Type local:EditClientDetailViewModel}}, Path=FillExerciseCommand}" CommandParameter="{Binding .}" />
+                                    <!--<Button BackgroundColor="LightGreen" Text="Fill Exercise" IsVisible="{Binding Exercise2.ShowButton}" Command="{Binding Source={RelativeSource AncestorType={x:Type local:EditClientDetailViewModel}}, Path=FillExerciseCommand}" CommandParameter="{Binding .}" />-->
                                     <Label Text="{Binding Exercise2.Name}" TextColor="Black" IsVisible="{Binding Exercise2.ShowInfo}"/>
                                     <Label Text="{Binding Exercise2.Reps}" TextColor="Black" IsVisible="{Binding Exercise2.ShowInfo}"/>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Source={RelativeSource AncestorType={x:Type local:EditClientDetailViewModel}}, Path=EditExerciseShowPopupCommand}" CommandParameter="{Binding Exercise2}">
+                                        </TapGestureRecognizer>
+                                    </StackLayout.GestureRecognizers>
                                 </StackLayout>
                                 <StackLayout Orientation="Vertical" IsVisible="{Binding Exercise3Visible}">
-                                    <Button BackgroundColor="LightGreen" Text="Fill Exercise" IsVisible="{Binding Exercise3.ShowButton}" Command="{Binding Source={RelativeSource AncestorType={x:Type local:EditClientDetailViewModel}}, Path=FillExerciseCommand}" CommandParameter="{Binding .}" />
+                                    <!--<Button BackgroundColor="LightGreen" Text="Fill Exercise" IsVisible="{Binding Exercise3.ShowButton}" Command="{Binding Source={RelativeSource AncestorType={x:Type local:EditClientDetailViewModel}}, Path=FillExerciseCommand}" CommandParameter="{Binding .}" />-->
                                     <Label Text="{Binding Exercise3.Name}" TextColor="Black" IsVisible="{Binding Exercise3.ShowInfo}"/>
                                     <Label Text="{Binding Exercise3.Reps}" TextColor="Black" IsVisible="{Binding Exercise3.ShowInfo}"/>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Source={RelativeSource AncestorType={x:Type local:EditClientDetailViewModel}}, Path=EditExerciseShowPopupCommand}" CommandParameter="{Binding Exercise3}">
+                                        </TapGestureRecognizer>
+                                    </StackLayout.GestureRecognizers>
                                 </StackLayout>
                                 <!--<Button BackgroundColor="Green" Text="Add Empty Exercise" Command="{Binding Source={RelativeSource AncestorType={x:Type local:EditClientDetailViewModel}}, Path=AddEmptyExerciseCommand}" CommandParameter="{Binding .}" />-->
                             </StackLayout>

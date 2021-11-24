@@ -70,6 +70,7 @@ namespace BWS.Clients
             { 
                 BWSDay1 dayType1 = (BWSDay1)item;
                 day.Exercise1 = new ExerciseViewModel { Name = dayType1.Exercise1.Name, Reps = dayType1.Exercise1.Reps, CoachComment = dayType1.Exercise1.CoachComment };
+                day.exercise1.DayName = item.Name;
                 if (!string.IsNullOrEmpty(dayType1.Exercise1.Name))
                 { 
                     day.Exercise1Visible = true;
@@ -81,6 +82,7 @@ namespace BWS.Clients
             {
                 BWSDay2 dayType2 = (BWSDay2)item;
                 day.Exercise2 = new ExerciseViewModel { Name = dayType2.Exercise2.Name, Reps = dayType2.Exercise2.Reps, CoachComment = dayType2.Exercise2.CoachComment };
+                day.exercise2.DayName = item.Name;
                 if (!string.IsNullOrEmpty(dayType2.Exercise2.Name))
                 {
                     day.Exercise2Visible = true;
@@ -92,6 +94,7 @@ namespace BWS.Clients
             {
                 BWSDay3 dayType3 = (BWSDay3)item;
                 day.Exercise3 = new ExerciseViewModel { Name = dayType3.Exercise3.Name, Reps = dayType3.Exercise3.Reps, CoachComment = dayType3.Exercise3.CoachComment };
+                day.exercise3.DayName = item.Name;
                 if (!string.IsNullOrEmpty(dayType3.Exercise3.Name))
                 {
                     day.Exercise3Visible = true;
