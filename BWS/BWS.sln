@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BWS.Android", "BWS.Android\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BWS.iOS", "BWS.iOS\BWS.iOS.csproj", "{C7FD626B-9416-46C6-808D-E334D8400E9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BWS", "BWS\BWS.csproj", "{B8DB7E01-D6DA-45D2-A1F1-ED570ACA2222}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BWS", "BWS\BWS.csproj", "{B8DB7E01-D6DA-45D2-A1F1-ED570ACA2222}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

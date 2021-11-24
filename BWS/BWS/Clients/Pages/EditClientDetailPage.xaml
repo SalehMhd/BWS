@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:local="clr-namespace:BWS.Clients"
-             x:Class="BWS.Clients.EditClientDetailPage">
+             x:Class="BWS.Clients.EditClientDetailPage"
+             x:Name="ClientPageDataBound">
     <ContentPage.Content>
         <StackLayout Spacing="20" Padding="15">
             <Label Text="{Binding Name,  StringFormat='Name:  {0}'}" HorizontalTextAlignment="Center" />
@@ -20,6 +21,10 @@
                                 <MenuItem Clicked="OnDelete"
                                   CommandParameter="{Binding .}"
                                   Text="Delete" IsDestructive="True" />
+
+                                <MenuItem Text="Add Exercise"
+                                          IsDestructive="True" 
+                                  Command="{Binding Source={x:Reference ClientPageDataBound}, Path=BindingContext.AddEmptyExerciseCommand}" CommandParameter="{Binding .}" />
                             </ViewCell.ContextActions>
                             
                             <StackLayout Orientation="Horizontal">
@@ -39,7 +44,7 @@
                                     <Label Text="{Binding Exercise3.Name}" TextColor="Black" IsVisible="{Binding Exercise3.ShowInfo}"/>
                                     <Label Text="{Binding Exercise3.Reps}" TextColor="Black" IsVisible="{Binding Exercise3.ShowInfo}"/>
                                 </StackLayout>
-                                <Button BackgroundColor="Green" Text="Add Empty Exercise" Command="{Binding Source={RelativeSource AncestorType={x:Type local:EditClientDetailViewModel}}, Path=AddEmptyExerciseCommand}" CommandParameter="{Binding .}" />
+                                <!--<Button BackgroundColor="Green" Text="Add Empty Exercise" Command="{Binding Source={RelativeSource AncestorType={x:Type local:EditClientDetailViewModel}}, Path=AddEmptyExerciseCommand}" CommandParameter="{Binding .}" />-->
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

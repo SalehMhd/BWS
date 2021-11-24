@@ -70,16 +70,34 @@ namespace BWS.Clients
             { 
                 BWSDay1 dayType1 = (BWSDay1)item;
                 day.Exercise1 = new ExerciseViewModel { Name = dayType1.Exercise1.Name, Reps = dayType1.Exercise1.Reps, CoachComment = dayType1.Exercise1.CoachComment };
+                if (!string.IsNullOrEmpty(dayType1.Exercise1.Name))
+                { 
+                    day.Exercise1Visible = true;
+                    day.Exercise1.ShowButton = false;
+                    day.Exercise1.ShowInfo = true;
+                }
             }
             if (item.Type > 1)
             {
                 BWSDay2 dayType2 = (BWSDay2)item;
                 day.Exercise2 = new ExerciseViewModel { Name = dayType2.Exercise2.Name, Reps = dayType2.Exercise2.Reps, CoachComment = dayType2.Exercise2.CoachComment };
+                if (!string.IsNullOrEmpty(dayType2.Exercise2.Name))
+                {
+                    day.Exercise2Visible = true;
+                    day.Exercise2.ShowButton = false;
+                    day.Exercise2.ShowInfo = true;
+                }
             }
             if (item.Type > 2)
             {
                 BWSDay3 dayType3 = (BWSDay3)item;
                 day.Exercise3 = new ExerciseViewModel { Name = dayType3.Exercise3.Name, Reps = dayType3.Exercise3.Reps, CoachComment = dayType3.Exercise3.CoachComment };
+                if (!string.IsNullOrEmpty(dayType3.Exercise3.Name))
+                {
+                    day.Exercise3Visible = true;
+                    day.Exercise3.ShowButton = false;
+                    day.Exercise3.ShowInfo = true;
+                }
             }
 
             return day;

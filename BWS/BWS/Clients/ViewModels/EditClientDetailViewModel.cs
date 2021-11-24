@@ -18,8 +18,11 @@ namespace BWS.Clients
         private string phone;
         private string email;
         private string clientName;
-
+        
         private bool showDate;
+        private ExerciseViewModel editedExercise = new ExerciseViewModel();
+        private string selectedDayName;
+        private int editedExerciseOrder;
         public string Name
         {
             get => name;
@@ -54,14 +57,33 @@ namespace BWS.Clients
             set => SetProperty(ref showDate, value);
         }
 
+        public ExerciseViewModel EditedExercise
+        {
+            get => editedExercise;
+            set => SetProperty(ref editedExercise, value);
+        }
+        public int EditedExerciseOrder
+        {
+            get => editedExerciseOrder;
+            set => SetProperty(ref editedExerciseOrder, value);
+        }
+
         public Command FillExerciseCommand { get; }
         public Command AddEmptyExerciseCommand { get; }
+        public Command AddExerciseShowPopupCommand { get; }
+        public Command AddExerciseClosePopupCommand { get; }
+        public Command CancelExerciseClosePopupCommand { get; }
         public ObservableCollection<BWSDayViewModel> Weeks { get; }
         public EditClientDetailViewModel()
         {
             Weeks = new ObservableCollection<BWSDayViewModel>();
             FillExerciseCommand = new Command<BWSDayViewModel>(OnFillExerciseSelected);
             AddEmptyExerciseCommand = new Command<BWSDayViewModel>(OnAddEmptyExerciseSelected);
+            AddExerciseShowPopupCommand = new Command<BWSDayViewModel>(OnAddExerciseShowPopupCommand);
+
+            AddExerciseClosePopupCommand = new Command(OnAddExerciseClosePopupCommand);
+            CancelExerciseClosePopupCommand = new Command(OnCancelExerciseClosePopupCommand);
+
             ShowDate = false;
         }
         private void OnFillExerciseSelected(BWSDayViewModel day)
@@ -92,37 +114,117 @@ namespace BWS.Clients
                 return;
             }
         }
-        private void OnAddEmptyExerciseSelected(BWSDayViewModel day)
+        
+        private async void OnAddExerciseClosePopupCommand()
         {
-            if (day == null)
-                return;
+            var selectedDay = Weeks.FirstOrDefault(d => d.Name == selectedDayName);
+            if (editedExerciseOrder == 1)
+            {
+                //selectedDay.Exercise1 = editedExercise;
+                selectedDay.Exercise1.Name = editedExercise.Name;
+                selectedDay.Exercise1.Reps = editedExercise.Reps;
+                selectedDay.Exercise1.CoachComment = editedExercise.CoachComment;
+                selectedDay.Exercise1.ShowButton = false;
+                selectedDay.Exercise1.ShowInfo = true;
+                selectedDay.Exercise1Visible = true;
+            }
 
-            if (!day.Exercise1Visible)
+            if (editedExerciseOrder == 2)
             {
-                day.Exercise1Visible = true;
-                day.Exercise1 = new ExerciseViewModel();
-                day.Exercise1.ShowButton = true;
-                day.Exercise1.ShowInfo = false;
-                return;
+                selectedDay.Exercise2.Name = editedExercise.Name;
+                selectedDay.Exercise2.Reps = editedExercise.Reps;
+                selectedDay.Exercise2.CoachComment = editedExercise.CoachComment;
+                selectedDay.Exercise2.ShowButton = false;
+                selectedDay.Exercise2.ShowInfo = true;
+                selectedDay.Exercise2Visible = true;
             }
-            if (!day.Exercise2Visible)
+
+            if (editedExerciseOrder == 3)
             {
-                day.Exercise2Visible = true;
-                day.Exercise2 = new ExerciseViewModel();
-                day.Exercise2.ShowButton = true;
-                day.Exercise2.ShowInfo = false;
-                return;
+                selectedDay.Exercise3.Name = editedExercise.Name;
+                selectedDay.Exercise3.Reps = editedExercise.Reps;
+                selectedDay.Exercise3.CoachComment = editedExercise.CoachComment;
+                selectedDay.Exercise3.ShowButton = false;
+                selectedDay.Exercise3.ShowInfo = true;
+                selectedDay.Exercise3Visible = true;
             }
-            if (!day.Exercise3Visible)
-            {
-                day.Exercise3Visible = true;
-                day.Exercise3 = new ExerciseViewModel();
-                day.Exercise3.ShowButton = true;
-                day.Exercise3.ShowInfo = false;
-                return;
-            }
+
+            await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PopAsync();
+        }
+        private async void OnCancelExerciseClosePopupCommand()
+        {
+            await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PopAsync();
         }
 
+        private async void OnAddEmptyExerciseSelected(BWSDayViewModel day)
+        {
+            selectedDayName = day.Name;
+            editedExercise.Name = "";
+            editedExercise.Reps = "";
+            editedExercise.CoachComment= "";
+
+            var popupUpPage = new ExercisePage();
+            popupUpPage.BindingContext = this;
+            await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PushAsync(popupUpPage);
+            //if (day == null)
+            //    return;
+
+            //if (!day.Exercise1Visible)
+            //{
+            //    day.Exercise1Visible = true;
+            //    day.Exercise1 = new ExerciseViewModel();
+            //    day.Exercise1.ShowButton = true;
+            //    day.Exercise1.ShowInfo = false;
+            //    return;
+            //}
+            //if (!day.Exercise2Visible)
+            //{
+            //    day.Exercise2Visible = true;
+            //    day.Exercise2 = new ExerciseViewModel();
+            //    day.Exercise2.ShowButton = true;
+            //    day.Exercise2.ShowInfo = false;
+            //    return;
+            //}
+            //if (!day.Exercise3Visible)
+            //{
+            //    day.Exercise3Visible = true;
+            //    day.Exercise3 = new ExerciseViewModel();
+            //    day.Exercise3.ShowButton = true;
+            //    day.Exercise3.ShowInfo = false;
+            //    return;
+            //}
+        }
+        private async void OnAddExerciseShowPopupCommand(BWSDayViewModel day)
+        {
+            await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PushAsync(new ExercisePage());
+            //if (day == null)
+            //    return;
+
+            //if (!day.Exercise1Visible)
+            //{
+            //    day.Exercise1Visible = true;
+            //    day.Exercise1 = new ExerciseViewModel();
+            //    day.Exercise1.ShowButton = true;
+            //    day.Exercise1.ShowInfo = false;
+            //    return;
+            //}
+            //if (!day.Exercise2Visible)
+            //{
+            //    day.Exercise2Visible = true;
+            //    day.Exercise2 = new ExerciseViewModel();
+            //    day.Exercise2.ShowButton = true;
+            //    day.Exercise2.ShowInfo = false;
+            //    return;
+            //}
+            //if (!day.Exercise3Visible)
+            //{
+            //    day.Exercise3Visible = true;
+            //    day.Exercise3 = new ExerciseViewModel();
+            //    day.Exercise3.ShowButton = true;
+            //    day.Exercise3.ShowInfo = false;
+            //    return;
+            //}
+        }
         public async void LoadClient(string name)
         {
             try
