@@ -14,6 +14,7 @@ namespace BWS.Clients
         private bool showButton;
         private bool showInfo;
 
+        public int Order { get; set; }
         public string DayName { get; set; }
 
         public string Name

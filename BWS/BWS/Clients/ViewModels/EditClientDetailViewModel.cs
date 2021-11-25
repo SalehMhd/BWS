@@ -22,7 +22,6 @@ namespace BWS.Clients
         private bool showDate;
         private ExerciseViewModel editedExercise = new ExerciseViewModel();
         private string selectedDayName;
-        private int editedExerciseOrder;
         public string Name
         {
             get => name;
@@ -62,11 +61,6 @@ namespace BWS.Clients
             get => editedExercise;
             set => SetProperty(ref editedExercise, value);
         }
-        public int EditedExerciseOrder
-        {
-            get => editedExerciseOrder;
-            set => SetProperty(ref editedExerciseOrder, value);
-        }
 
         public Command FillExerciseCommand { get; }
         public Command AddEmptyExerciseCommand { get; }
@@ -91,6 +85,7 @@ namespace BWS.Clients
         private async void OnEditExerciseShowPopupCommand(ExerciseViewModel exerciseVM)
         {
             selectedDayName = exerciseVM.DayName;
+            editedExercise.Order = exerciseVM.Order;
             editedExercise.Name = exerciseVM.Name;
             editedExercise.Reps = exerciseVM.Reps;
             editedExercise.CoachComment = exerciseVM.CoachComment;
@@ -132,34 +127,37 @@ namespace BWS.Clients
         private async void OnAddExerciseClosePopupCommand()
         {
             var selectedDay = Weeks.FirstOrDefault(d => d.Name == selectedDayName);
-            if (editedExerciseOrder == 1)
+            if (editedExercise.Order == 1)
             {
                 //selectedDay.Exercise1 = editedExercise;
                 selectedDay.Exercise1.Name = editedExercise.Name;
                 selectedDay.Exercise1.Reps = editedExercise.Reps;
                 selectedDay.Exercise1.CoachComment = editedExercise.CoachComment;
+                selectedDay.Exercise1.Order = editedExercise.Order;
                 selectedDay.Exercise1.DayName = selectedDay.Name;
                 selectedDay.Exercise1.ShowButton = false;
                 selectedDay.Exercise1.ShowInfo = true;
                 selectedDay.Exercise1Visible = true;
             }
 
-            if (editedExerciseOrder == 2)
+            if (editedExercise.Order == 2)
             {
                 selectedDay.Exercise2.Name = editedExercise.Name;
                 selectedDay.Exercise2.Reps = editedExercise.Reps;
                 selectedDay.Exercise2.CoachComment = editedExercise.CoachComment;
+                selectedDay.Exercise2.Order = editedExercise.Order;
                 selectedDay.Exercise2.DayName = selectedDay.Name;
                 selectedDay.Exercise2.ShowButton = false;
                 selectedDay.Exercise2.ShowInfo = true;
                 selectedDay.Exercise2Visible = true;
             }
 
-            if (editedExerciseOrder == 3)
+            if (editedExercise.Order == 3)
             {
                 selectedDay.Exercise3.Name = editedExercise.Name;
                 selectedDay.Exercise3.Reps = editedExercise.Reps;
                 selectedDay.Exercise3.CoachComment = editedExercise.CoachComment;
+                selectedDay.Exercise3.Order = editedExercise.Order;
                 selectedDay.Exercise3.DayName = selectedDay.Name;
                 selectedDay.Exercise3.ShowButton = false;
                 selectedDay.Exercise3.ShowInfo = true;
@@ -176,6 +174,7 @@ namespace BWS.Clients
         private async void OnAddEmptyExerciseSelected(BWSDayViewModel day)
         {
             selectedDayName = day.Name;
+            editedExercise.Order = 0;
             editedExercise.Name = "";
             editedExercise.Reps = "";
             editedExercise.CoachComment= "";

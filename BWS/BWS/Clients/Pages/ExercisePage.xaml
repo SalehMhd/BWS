@@ -35,7 +35,7 @@
         </Grid.RowDefinitions>
         <Entry Grid.Row="0"
                        Placeholder="Enter Order"
-                       Text="{Binding EditedExerciseOrder}"
+                       Text="{Binding EditedExercise.Order}"
                        VerticalTextAlignment="Center"
                        HorizontalTextAlignment="Start" />
         <Entry Grid.Row="1"
